@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kafka.application.model.Item;
 import com.kafka.application.producer.KafkaProducer;
 
 @RestController
@@ -18,9 +19,9 @@ public class MessageController {
 	KafkaProducer kafkaProducer;
 	
 	@PostMapping
-	private ResponseEntity<String> sendMessage(@RequestBody String message){
+	private ResponseEntity<String> sendMessage(@RequestBody Item item){
 		
-		kafkaProducer.sendMessage(message);
+		kafkaProducer.sendMessage(item);
 		
 		return new ResponseEntity<String>("Successfully sent a message", HttpStatus.OK);
 	}

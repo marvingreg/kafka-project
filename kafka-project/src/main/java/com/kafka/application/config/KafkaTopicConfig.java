@@ -13,7 +13,7 @@ public class KafkaTopicConfig {
 	@Bean
 	public NewTopic topic() {
 		return TopicBuilder
-				.name("someTopic")
+				.name("gps-position")
 				.build();
 	}
 	

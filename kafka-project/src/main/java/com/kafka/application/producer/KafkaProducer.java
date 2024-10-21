@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import com.kafka.application.model.Item;
+
 import ch.qos.logback.classic.Logger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,13 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 public class KafkaProducer {
 	
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Item> kafkaTemplate;
 	private org.slf4j.Logger log = LoggerFactory.getLogger(KafkaProducer.class);
 
-
-	public void sendMessage(String msg) {
-		log.info(String.format("Sending message to %s", msg));
-		kafkaTemplate.send("someTopic", msg);
+	
+	public void sendMessage(Item item) {
+		log.info(String.format("Sending message to %s", item));
+		kafkaTemplate.send("gps-position", item);
 	}
 	
 	
